@@ -1,0 +1,7 @@
+mocogan/
+tgan/
+project_stuff/wavenet-ckpt/
+project_stuff/wavenet-ckpt.tar
+**/local.db
+**/logs/**
+

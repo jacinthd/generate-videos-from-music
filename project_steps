@@ -1,0 +1,59 @@
+##Youtube video source location
+100bpm - https://www.youtube.com/watch?v=5aGo24oKGjE 
+110bpm - https://www.youtube.com/watch?v=FRuZg4VZUZ4
+120bpm - https://www.youtube.com/watch?v=C2lATGgQKaM
+
+##separating music from video
+ffplay -i 100BPM.mp4 -vf "crop=96:128"
+sudo ffmpeg -i 100BPM.mp4 -vf "crop=96:128" -ss 00:00:01 100cut.mp4 #crops
+
+sudo ffmpeg -i 100cut.mp4 -ss 00:00:10 -t 00:00:03 100_3.mp4 #snippets
+
+sudo ffmpeg -i 100_1.mp4 -c copy 100_1a.aac 
+sudo ffmpeg -i 100_1a.aac 100_1.wav #audio
+sudo ffmpeg -i 100_1.mp4 -c copy -an 100_1v.mp4 #video
+
+sudo chmod -R 777 Snippets/
+
+##music embeddings 
+follow instructions here to install: https://github.com/tensorflow/magenta
+
+use this command to get embeddings from music, source(https://github.com/tensorflow/magenta/tree/master/magenta/models/nsynth):
+nsynth_save_embeddings \
+--checkpoint_path=~//Documents/682/Project/project_stuff/wavenet-ckpt/model.ckpt-200000 \
+--source_path= ~/Documents/682/Project/project_stuff/trial-videos/Snippets/cut_videos_128_128/100_1.mp4 \
+--save_path= ~/Documents/682/Project/project_stuff/trial-videos/Snippets/cut_videos_128_128/100_1.npy \
+--batch_size=3
+
+##getting video numpy arrays
+all videos are 36*128*96*3 (on 07/18/2018)
+
+###script to convert video:
+import numpy as np
+import skvideo.io  
+
+videodata = skvideo.io.vread("100_3v.mp4")  
+print(videodata.shape)
+
+np.save('100_3v.npy',videodata)
+
+###aggregate all video files into one
+import numpy as np
+a = np.load('100_1v.npy')
+b = np.load('100_2v.npy')
+c = np.load('100_3v.npy')
+d = np.asarray([a,b,c])
+d.shape
+np.save('combined_videos.npy',d)
+
+###get video to sequence of images and then one image
+ffmpeg -i ../split/100_2v.mp4 image-%03d.png
+ffmpeg -i image-%03d.png -filter_complex scale=120:-1,tile=36x1 output.png
+
+###train model and then generate video
+python train.py --batches=10000 --print_every=250 /home/jacinth/Documents/682/Project/project_stuff/trial-videos/Snippets/ /home/jacinth/Documents/682/Project/project_stuff/trial-videos/Snippets/logs2
+
+/home/jacinth/anaconda3/envs/mocogan/bin/python /home/jacinth/Documents/682/Project/mocogan/src/generate_videos.py /home/jacinth/Documents/682/Project/project_stuff/trial-videos/Snippets/logs2/generator_10000.pytorch /home/jacinth/Documents/ --output_format=mp4
+
+
+

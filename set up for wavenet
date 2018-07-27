@@ -1,0 +1,22 @@
+conda install -c conda-forge librosa
+
+gcloud compute ssh --zone=us-east1-b instance-2
+gcloud compute scp --recurse --zone=us-east1-b instance-2 ./pytorch-wavenet jacinth@instance-2:~
+jupyter-notebook --no-browser --port=7000
+~/.local/bin/jupyter-notebook --no-browser --port=7000
+
+wget https://repo.continuum.io/archive/Anaconda3-5.1.0-Linux-x86_64.sh
+
+35.227.104.248 
+
+http://35.227.104.248:7000/?token=d8c2f297c8a7ff40c225dc1309fca76656c5d5bac905fd43
+http://35.227.104.248:7000/?token=2db9568627570434a79b1e9ac91345d4be4a1af5687ab24d
+
+wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sudo apt-get install bzip2
+
+conda install -c conda-forge librosa
+
+sudo apt-get install python3-pip python3-dev
+pip3 install tensorflow or pip3 install tensorflow-gpu
+validate tensorflow install

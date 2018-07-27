@@ -1,0 +1,45 @@
+group members: 1
+It will be a group of 1
+
+Not shared with another class
+
+Generate music videos. Has not been done before properly. 
+
+Plan is to train 2 neural nets.
+
+1st neural net will obtain rythm from music. There are existing neural nets for automated transcription of music(notes+harmony+rhythm) which can be used for this. Data required is .wav files which are easily obtainable.
+
+2nd neural net will get "rhythmic" events from video, sort of like highlights. There are some datasets available for this, but I will have to fit them for my need.
+
+Final step will be to use highlights to make a music video based on their "rhythm". I intend to use random sampling from the created events, the sampling will be based on the fit to the pulse of the music video.
+
+If possible, I will use a sequence model to repeat clips for repeated sections in music
+
+Data that I plan to use:
+Training data for music rhythm net: 
+
+- The MAPS dataset. Primary dataset to be used. http://www.tsi.telecom-paristech.fr/aao/en/2010/07/08/maps-database-a-piano-database-for-multipitch-estimation-and-automatic-transcription-of-music/
+
+- Don't use because midi files might be low quality. They're not curated. music to MIDI (https://www.reddit.com/r/WeAreTheMusicMakers/comments/3ajwe4/the_largest_midi_collection_on_the_internet/?st=jf0791ps&sh=942e6d60)
+
+Training data for video highlight net: 
+https://www.kaggle.com/raingo/tumblr-gif-description-dataset/version/1
+
+Unsorted Papers for context: 
+* Highlight Detection with Pairwise Deep Ranking for First-Person Video Summarization (https://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Yao_Highlight_Detection_With_CVPR_2016_paper.pdf) - Dataset obtained from youtube, not made available
+- Video Paragraph Captioning Using Hierarchical Recurrent Neural Networks (https://arxiv.org/pdf/1510.07712.pdf)
+- Learning Human Actions from Movies (https://www.di.ens.fr/~laptev/actions/)
+- Recognizing Realistic Actions from Videos “in the Wild” (http://www.vision.eecs.ucf.edu/papers/cvpr2009/cvpr2009_liu1.pdf)
+- UCF101: A Dataset of 101 Human Actions Classes From Videos in The Wild (https://arxiv.org/pdf/1212.0402.pdf)
+- Automatic Soccer Video Event Detection Based on a Deep Neural Network Combined CNN and RNN (http://ieeexplore.ieee.org/document/7814641/)
+- AUDIO-BASED MULTIMEDIA EVENT DETECTION USING DEEP RECURRENT NEURAL
+NETWORK (http://www.cs.cmu.edu/~fmetze/interACT/Publications_files/publications/wang.pdf)
+- AENet: Learning Deep Audio Features for Video Analysis (https://arxiv.org/pdf/1701.00599.pdf)
+
+- Music Creation using RNN(https://github.com/MattVitelli/GRUV)
+- * has links to other materials Automatic Music Transcription with Deep Neural Networks (https://github.com/jsleep/wav2mid)
+- ON THE POTENTIAL OF SIMPLE FRAMEWISE APPROACHES TO PIANO TRANSCRIPTION (https://arxiv.org/pdf/1612.05153.pdf)
+- An End-to-End Neural Network for Polyphonic Piano Music Transcription (https://arxiv.org/pdf/1508.01774.pdf)
+- Modeling Temporal Dependencies in High-Dimensional Sequences: Application to Polyphonic Music Generation and Transcription (https://arxiv.org/abs/1206.6392)
+
+

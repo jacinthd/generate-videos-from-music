@@ -56,4 +56,9 @@ python train.py --batches=10000 --print_every=250 /home/jacinth/Documents/682/Pr
 /home/jacinth/anaconda3/envs/mocogan/bin/python /home/jacinth/Documents/682/Project/mocogan/src/generate_videos.py /home/jacinth/Documents/682/Project/project_stuff/trial-videos/Snippets/logs2/generator_10000.pytorch /home/jacinth/Documents/ --output_format=mp4
 
 
+python ~/mocogan/src/train.py --batches=4000 --print_every=100 ~/generate-videos-from-music/project_stuff/trial-videos/Snippets/cut_videos_128_128/dataset/ ~/logs
+
+python ~/mocogan/src/generate_videos.py ~/logs/generator_01100.pytorch home/jacinth/ --output_format=mp4
+
+
 
